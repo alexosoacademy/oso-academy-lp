@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>OSO Academy — become a touring DJ in 90 days</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700;800;900&family=Archivo+Narrow:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    /* Surface tiers (3-tier elevation system) */
+    --bg:#0A0A0A;              /* tier 0 — page */
+    --surface-1:#121212;       /* tier 1 — section break */
+    --surface-2:#1A1A1A;       /* tier 2 — raised card */
+    --surface-3:#222222;       /* tier 3 — floating */
+    --panel:#1A1A1A;
+    --bone:#EDE8DF;
+    --bone-dim:#9A958C;
+    --bone-2:#F5F1E8;          /* warmer cream tone */
+    --orange:#F37021;
+    --orange-deep:#C95612;
+    --orange-glow:rgba(243,112,33,0.28);
+    --blue:#5BBCE4;            /* secondary accent */
+    --blue-glow:rgba(91,188,228,0.22);
+    --line:rgba(237,232,223,0.10);
+    --line-strong:rgba(237,232,223,0.22);
+    --hairline:rgba(237,232,223,0.06);
+
+    /* Inner highlight (glassy edge for dark cards) */
+    --edge-top:inset 0 1px 0 rgba(255,255,255,0.06);
+    --edge-top-strong:inset 0 1px 0 rgba(255,255,255,0.10);
+
+    /* Elevation recipes — multi-layer, low opacity, large blur */
+    --shadow-raised:
+      0 1px 0 rgba(255,255,255,0.05) inset,
+      0 2px 4px rgba(0,0,0,0.5),
+      0 12px 32px rgba(0,0,0,0.45),
+      0 32px 80px rgba(0,0,0,0.35);
+    --shadow-floating:
+      0 1px 0 rgba(255,255,255,0.08) inset,
+      0 4px 12px rgba(0,0,0,0.6),
+      0 24px 60px rgba(0,0,0,0.55),
+      0 60px 120px rgba(0,0,0,0.4);
+    --shadow-orange-glow:
+      0 1px 0 rgba(255,255,255,0.06) inset,
+      0 12px 32px rgba(0,0,0,0.5),
+      0 0 0 1px rgba(243,112,33,0.35),
+      0 24px 80px rgba(243,112,33,0.18);
+    --shadow-light-card:
+      0 1px 2px rgba(10,10,10,0.04),
+      0 8px 24px rgba(10,10,10,0.06),
+      0 24px 60px rgba(10,10,10,0.08);
+
+    /* Radii */
+    --r-chip:8px;
+    --r-btn:12px;
+    --r-card:20px;
+    --r-card-lg:24px;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--bone);}
+  body{
+    font-family:'Archivo', system-ui, sans-serif;
+    font-feature-settings:"ss01","ss02";
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  /* TYPE */
+  .display{font-family:'Anton', 'Archivo Narrow', sans-serif; font-weight:400; letter-spacing:-0.01em; line-height:0.86; text-transform:uppercase;}
+  .archivo{font-family:'Archivo', sans-serif;}
+  .narrow{font-family:'Archivo Narrow', sans-serif;}
+  .mono{font-family:'JetBrains Mono', monospace; font-feature-settings:"zero","ss01";}
+  .meta{font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--bone-dim);}
+  .meta-strong{font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.08em; text-transform:uppercase; color:var(--bone);}
+
+  /* GRAIN */
+  .grain::after{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.93 0 0 0 0 0.91 0 0 0 0 0.87 0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>");
+    opacity:0.18; mix-blend-mode:overlay; z-index:2;
+  }
+  body::before{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:9990;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.5 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    opacity:0.07; mix-blend-mode:overlay;
+  }
+
+  /* HALFTONE filter on imgs */
+  .halftone{
+    filter:grayscale(1) contrast(1.15) brightness(0.85);
+  }
+  .duotone-orange{
+    filter:grayscale(1) contrast(1.2) brightness(0.85);
+  }
+  .duotone-orange::after{
+    content:""; position:absolute; inset:0;
+    background:rgba(243,112,33,0.42); mix-blend-mode:multiply;
+  }
+
+  /* MARQUEE */
+  @keyframes marquee{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  .marquee-track{ display:flex; width:max-content; animation:marquee 40s linear infinite;}
+
+  @keyframes marquee-slow{ from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  .marquee-slow{ animation:marquee-slow 90s linear infinite;}
+
+  /* Buttons — radius + elevation */
+  .btn-primary{
+    display:inline-flex; align-items:center; gap:14px;
+    background:linear-gradient(180deg, #F88334 0%, #F37021 60%, #DA5F15 100%);
+    color:#0A0A0A;
+    padding:18px 26px; border:none; cursor:pointer;
+    border-radius:var(--r-btn);
+    font-family:'Archivo', sans-serif; font-weight:800; font-size:14px;
+    letter-spacing:0.08em; text-transform:uppercase;
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.25) inset,
+      0 -1px 0 rgba(0,0,0,0.18) inset,
+      0 4px 12px rgba(243,112,33,0.35),
+      0 12px 32px rgba(243,112,33,0.18);
+    transition:transform .2s ease, box-shadow .2s ease, filter .2s ease;
+  }
+  .btn-primary:hover{
+    transform:translateY(-2px);
+    filter:brightness(1.06);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.3) inset,
+      0 -1px 0 rgba(0,0,0,0.22) inset,
+      0 8px 20px rgba(243,112,33,0.45),
+      0 20px 48px rgba(243,112,33,0.28);
+  }
+  .btn-primary:active{ transform:translateY(0); }
+
+  .btn-ghost{
+    display:inline-flex; align-items:center; gap:10px;
+    background:rgba(237,232,223,0.04);
+    color:var(--bone);
+    padding:14px 22px;
+    border:1px solid var(--line-strong);
+    border-radius:var(--r-btn);
+    font-family:'JetBrains Mono', monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+    cursor:pointer; transition:all .2s ease;
+    backdrop-filter:blur(8px);
+  }
+  .btn-ghost:hover{
+    border-color:var(--orange);
+    color:var(--orange);
+    background:rgba(243,112,33,0.08);
+    transform:translateY(-1px);
+  }
+
+  /* tag — chip radius */
+  .tag{
+    display:inline-flex; align-items:center; gap:8px;
+    background:rgba(237,232,223,0.04);
+    border:1px solid var(--line-strong);
+    padding:6px 10px;
+    border-radius:var(--r-chip);
+    font-family:'JetBrains Mono', monospace; font-size:10px; letter-spacing:0.12em; text-transform:uppercase;
+  }
+  .tag .dot{ width:6px; height:6px; background:var(--orange); border-radius:50%;}
+
+  /* === ELEVATION SYSTEM ============================== */
+
+  /* Raised card — sits above page, no border, soft glassy edge */
+  .card-raised{
+    background:var(--surface-2);
+    border-radius:var(--r-card);
+    box-shadow:var(--shadow-raised);
+    position:relative;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .card-raised.interactive:hover{
+    transform:translateY(-2px);
+    box-shadow:var(--shadow-floating);
+  }
+
+  /* Subtler raised — section breaks */
+  .card-flat{
+    background:var(--surface-1);
+    border-radius:var(--r-card);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.04) inset,
+      0 8px 24px rgba(0,0,0,0.35);
+    position:relative;
+  }
+
+  /* Floating — CTAs + hero meta */
+  .card-floating{
+    background:var(--surface-2);
+    border-radius:var(--r-card);
+    box-shadow:var(--shadow-floating);
+    position:relative;
+  }
+
+  /* Light-mode cards (on bone bg) */
+  .card-light{
+    background:#FFFFFF;
+    border-radius:var(--r-card);
+    box-shadow:var(--shadow-light-card);
+    position:relative;
+  }
+  .card-dark-on-light{
+    background:#0A0A0A;
+    color:var(--bone);
+    border-radius:var(--r-card);
+    box-shadow:
+      0 1px 0 rgba(255,255,255,0.06) inset,
+      0 12px 32px rgba(10,10,10,0.18),
+      0 32px 80px rgba(10,10,10,0.12);
+    position:relative;
+  }
+
+  /* Image surface — replaces wireframe placeholder rectangles */
+  .img-surface{
+    border-radius:var(--r-card);
+    overflow:hidden;
+    box-shadow:var(--shadow-raised);
+    position:relative;
+    isolation:isolate;
+  }
+  .img-surface::after{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,0.08), inset 0 0 0 1px rgba(255,255,255,0.03);
+    border-radius:inherit;
+  }
+
+  /* Soft section divider (subtle gradient, not hard line) */
+  .section-divider{
+    height:120px;
+    background:linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.4) 60%, var(--bg) 100%);
+    pointer-events:none;
+  }
+  .section-divider-up{
+    height:120px;
+    background:linear-gradient(0deg, transparent 0%, rgba(0,0,0,0.4) 60%, var(--bg) 100%);
+    pointer-events:none;
+  }
+
+  /* utilities */
+  .container{ max-width:1480px; margin:0 auto; padding:0 48px;}
+  .hr{ height:1px; background:var(--line);}
+  .hr-strong{ height:1px; background:var(--line-strong);}
+
+  ::selection{ background:var(--orange); color:#0A0A0A;}
+
+  a{ color:inherit; text-decoration:none;}
+
+  /* Asterisk spark mark */
+  .spark{ display:inline-block; color:var(--orange);}
+</style>
+<meta name="ext-resource-dependency" content="https://images.unsplash.com/photo-1493676304819-0d7a8d026dcf?w=2400&q=80&auto=format&fit=crop" data-resource-id="heroImg" />
+<meta name="ext-resource-dependency" content="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?w=2400&q=80&auto=format&fit=crop" data-resource-id="crowdImg" />
+<meta name="ext-resource-dependency" content="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=2400&q=80&auto=format&fit=crop" data-resource-id="crowd2Img" />
+<meta name="ext-resource-dependency" content="https://images.unsplash.com/photo-1453738773917-9c3eff1db985?w=1600&q=80&auto=format&fit=crop" data-resource-id="decksImg" />
+<meta name="ext-resource-dependency" content="https://images.unsplash.com/photo-1598653222000-6b7b7a552625?w=1400&q=80&auto=format&fit=crop" data-resource-id="studioImg" />
+<meta name="ext-resource-dependency" content="https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?w=1400&q=80&auto=format&fit=crop" data-resource-id="portraitImg" />
+<meta name="ext-resource-dependency" content="https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=1600&q=80&auto=format&fit=crop" data-resource-id="hazeImg" />
+<meta name="ext-resource-dependency" content="assets/m1-identity-kaira.png" data-resource-id="m1Img" />
+<meta name="ext-resource-dependency" content="assets/m2-content-kairo.png" data-resource-id="m2Img" />
+<meta name="ext-resource-dependency" content="assets/m3-production-vessel.png" data-resource-id="m3Img" />
+<meta name="ext-resource-dependency" content="assets/m4-networking-saintivy.png" data-resource-id="m4Img" />
+<meta name="ext-resource-dependency" content="assets/m5-bookings-echopark.png" data-resource-id="m5Img" />
+<meta name="ext-resource-dependency" content="assets/oso-logo.png" data-resource-id="logoImg" />
+
+<template id="__bundler_thumbnail" data-bg-color="#0A0A0A">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#0A0A0A"/>
+    <g stroke="#F37021" stroke-width="14" stroke-linecap="square" fill="none">
+      <path d="M600 240 L600 560 M440 400 L760 400 M488 288 L712 512 M712 288 L488 512"/>
+    </g>
+    <text x="600" y="650" fill="#EDE8DF" font-family="Anton, Impact, sans-serif" font-size="56" text-anchor="middle" letter-spacing="4">OSO ACADEMY</text>
+  </svg>
+</template>
+</head>
+<body>
+  <div id="root"></div>
+
+  <!-- React + Babel -->
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel" src="tweaks-panel.jsx"></script>
+  <script type="text/babel" src="src/primitives.jsx"></script>
+  <script type="text/babel" src="src/sections-a.jsx"></script>
+  <script type="text/babel" src="src/sections-b.jsx"></script>
+  <script type="text/babel" src="src/sections-c.jsx"></script>
+  <script type="text/babel" src="src/app.jsx"></script>
+</body>
+</html>
